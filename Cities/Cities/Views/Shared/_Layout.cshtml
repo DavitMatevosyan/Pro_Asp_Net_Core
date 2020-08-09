@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cities</title>
+    <script src="http:ajax.aspmentcdn.com/ajax/jQuery/jquery-3.2.1.min.js"
+            asp-fallback-src-include="/lib/jquery/dist/**/*.min.js"
+            asp-fallback-src-exclude="**.slim.**"
+            asp-fallback-test="window.jQuery"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          asp-fallback-href-include="/lib/bootstrap/dist/**/*.min.css"
+          asp-fallback-href-exclude="**/*-reboot*,**/*-grid*"
+          asp-fallback-test-class="btn"
+          asp-fallback-test-property="display"
+          asp-fallback-test-value="inline-block"
+          rel="stylesheet"/>
+</head>
+<body class="m-1 p-1">
+    <img src="~/images/city.png" asp-append-version="true" />
+    <cache expires-after="@TimeSpan.FromSeconds(15)">
+        @await Component.InvokeAsync("Time")
+    </cache>
+    <div title="Cities">@RenderBody()</div>
+</body>
+</html>
+
+
+<!--
+    <script asp-src-include="/lib/jquery/dist/**/*.min.js"
+            asp-src-exclude="**.slim.**,**min.**"
+            asp-append-version="true"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <environment names="development">
+        <script asp-src-include="/lib/jquery/dist/**/j*.js"
+                asp-src-exclude="**.slim.**, **.min.**"></script>
+    </environment>
+    <environment names="production">
+        <script asp-src-include="/lib/jquery/dist/**/*.min.js"
+                asp-src-exclude="**.slim.**"></script>
+    </environment>
+
+
+
+-->
