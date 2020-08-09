@@ -1,0 +1,52 @@
+﻿@model Result
+
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Routing</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css"/>
+</head>
+
+<body class="p-1">
+    <table class="table table-bordered table-striped table-sm">
+        <tr>
+            <th>Controller:</th>
+            <td>@Model.Controller</td>
+        </tr>
+        <tr>
+            <th>Action:</th>
+            <td>@Model.Action</td>
+        </tr>
+        @foreach (string key in Model.Data.Keys)
+        {
+            <tr>
+                <th>@key :</th>
+                <td>@Model.Data[key]</td>
+            </tr>
+        }
+    </table>
+    <a asp-action="CustomVariable">This is an outgoing URL</a>
+    <br />
+    <a asp-controller="Admin" asp-action="Index">This targets another controller</a>
+    <br />
+    <a asp-controller="Customer" asp-action="Index">This targets another controller too</a>
+    <br />
+    <a asp-controller="Home" asp-action="Index" asp-route-id="Hello">this passes a value</a>
+    <br />
+    <a asp-controller="Home" asp-action="Index" asp-route-id="Hello" asp-protocol="https"
+        asp-host="myserver.mydomain.com" asp-fragment="myFragment">this Links to another website</a>
+    <br />
+    <a asp-route="out">this routes to out</a>
+    <br />
+    <p>URL: @Url.Action("CustomVariable", "Home", new { id = 100 }) -- this can be used to generate links</p>
+    <br />
+    <a asp-route-legacyurl="/articles/Windows_3.1_Overview.html" class="btn btn-primary"> this is legacyurl</a>
+    <br />
+    <p>URL: @Url.Action(null, null, new { legacyurl = "/articles/Windows_3.1_Overview.html" })</p>
+</body>
+</html>
